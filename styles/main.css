@@ -1,27 +1,97 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 10px;
     display: grid;
     grid-template-areas: 
       "header header"
       "nav main";
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 650px 1fr;
     grid-template-rows: 80px 1fr;
     row-gap: 10px;
     column-gap: 15px;
+    background-color: lightsteelblue;
+    font-family: cursive;
   }
   
   header {
     grid-area: header;
-    border: 2px solid red;
+    border: ridge gray;
+    padding-left: 20px;
+    font-family: cursive;
+    text-shadow: black 3px 3px 1px;;
+    color: linen;
+    background-color: darkgray;
+    border-radius: 25px;
   }
   
   main {
     grid-area: main;
-    border: 2px solid blue;
+
+    padding: 10px;
+    border-radius: 25px;
   }
   
   nav {
     grid-area: nav;
-    border: 2px solid green;
+ 
+    text-align: center;
+    padding: 10px;
+    border-radius: 25px;
+  }
+
+  .one {
+    text-align: center;
+  }
+
+  .container {
+    position: relative;
+    text-align: center;
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 15px;
+    left: 70px;
+    background-color: linen;
+    border-radius: 25px;
+    border: ridge grey;
+    padding: 2px;
+  }
+
+  .top-left {
+    position: absolute;
+    font-size: 30px;
+    top: 8px;
+    left: 70px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 25px;
+    opacity: 0.75;
+  }
+
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 70px;
+    padding: 10px;
+    background-color: crimson;
+    border-radius: 25px;
+    border: ridge grey;
+  }
+
+  img {
+    border-radius: 25px;
+    border: ridge grey;
+  }
+
+  h1 {
+    font-size: 50px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .background {
+    background-color: linen;
+    border-radius: 25px;
+    border: ridge grey;
   }
