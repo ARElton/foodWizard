@@ -32,6 +32,45 @@
       </main>
       <nav class="navContainer">
      
+        <div>
+          <h1>Create a New Recipe</h1>
+          <form id="new-recipe-form">
+            <div class="form-group">
+              <label for="new-recipe-name">Recipe name</label>
+              <input
+                name="recipe-name"
+                type="text"
+                class="form-control"
+                id="new-recipe-name"
+                size="60"
+              />
+            </div>
+            <div class="form-group">
+              <label for="Ingredients">Ingredients</label>
+              <input
+                name="ingredients"
+                type="text"
+                class="form-control"
+                id="ingredients"
+                style="height:100px"
+                size="60"
+                placeholder="Separate ingredients with a comma"
+              />
+              <div class="form-group">
+                <label for="Directions">Directions</label>
+                <input
+                  name="directions"
+                  type="text"
+                  class="form-control"
+                  id="directions"
+                  style="height:100px"
+                  size="60"
+                  placeholder="Separate directions with a period"
+                />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </nav>
 </body>
 </html>

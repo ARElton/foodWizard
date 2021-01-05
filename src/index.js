@@ -55,7 +55,7 @@ direcArray.forEach(direc => {
 
 
 
-fetch("http://localhost:3000/api/v1/recipes/1")
+fetch("http://localhost:3000/api/v1/recipes/8")
  .then(r => r.json())
  .then(recipeData => {
      renderOneRecipe(recipeData)
