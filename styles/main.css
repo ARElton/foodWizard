@@ -82,6 +82,9 @@ body {
   img {
     border-radius: 25px;
     border: ridge grey;
+    width:  500px;
+    height: 400px;
+    object-fit: cover;
   }
 
   h1 {
