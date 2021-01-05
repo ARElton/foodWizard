@@ -16,12 +16,11 @@ body {
   header {
     grid-area: header;
     border: ridge gray;
-    padding-left: 20px;
+    padding-left: 10px;
     font-family: cursive;
-    text-shadow: black 3px 3px 1px;;
-    color: linen;
     background-color: darkgray;
     border-radius: 25px;
+
   }
   
   main {
@@ -82,16 +81,26 @@ body {
   img {
     border-radius: 25px;
     border: ridge grey;
+    
+    width:  500px;
+    height: 400px;
+    object-fit: cover;
   }
 
-  h1 {
+  .title {
     font-size: 50px;
     text-align: center;
     margin: auto;
+    text-shadow: black 3px 3px 1px;;
+    color: linen;
   }
 
-  .background {
-    background-color: linen;
-    border-radius: 25px;
-    border: ridge grey;
+  .left {
+   
+    font-size: 30px;
+    text-align: left;
+    padding: 10px;
+    text-shadow: none;
+    color: black;
+  
   }
