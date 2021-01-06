@@ -19,6 +19,9 @@ image.src = recipeData.imgUrl
 
 const ingredArray = recipeData.ingredients.split(",")
 
+ingredients.innerHTML = ""
+directions.innerHTML = ""
+
 
 ingredArray.forEach(ingred => {
     const li = document.createElement("li")
