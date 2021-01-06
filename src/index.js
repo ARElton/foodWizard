@@ -5,7 +5,7 @@ function renderOneRecipe(id) {
  .then(r => r.json())
  .then(recipeData => {
      
-const recipeName = document.querySelector(".recipe-name")
+const recipeName = document.querySelector(".recipeName")
 const description = document.querySelector(".description")
 const ingredients = document.querySelector(".ingredients")
 const directions = document.querySelector(".directions")
@@ -49,13 +49,13 @@ direcArray.forEach(direc => {
     const div = document.createElement('div')
 
         div.innerHTML = `
+        <br>
         <div class="container">
         <div class="top-left">${recipeObj.name}</div>
         <div class="top-right">Favorite</div>
         <img class="showImg" data-id="${recipeObj.id}" src="${recipeObj.imgUrl}" alt="placeholder" style="max-width: 500px;" />
         <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
         </div>
-        <br>
         `
         recipeContainer.append(div)
 
@@ -110,4 +110,58 @@ direcArray.forEach(direc => {
 
 })
 
-renderOneRecipe(1)
+const form = document.querySelector("#new-recipe-form")
+
+form.addEventListener("submit", event => {
+    event.preventDefault()
+
+    const newRecipe = {
+        name: event.target.recipeName.value,
+        ingredients: event.target.ingredients.value,
+        directions: event.target.directions.value,
+        description: event.target.description.value,
+        imgUrl: event.target.image.value
+    }
+
+    // const div = document.createElement('div')
+
+    // div.innerHTML = `
+    // <br>
+    // <div class="container">
+    // <div class="top-left">${newRecipe.name}</div>
+    // <div class="top-right">Favorite</div>
+    // <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
+    // <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+    // </div>
+    // `
+    // recipeContainer.append(div)
+
+    fetch('http://localhost:3000/api/v1/recipes', {
+  method: 'POST', 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(newRecipe),
+})
+.then(response => response.json())
+.then(data => {
+  recipes.push(newRecipe);
+
+  const div = document.createElement('div')
+
+  div.innerHTML = `
+  <br>
+  <div class="container">
+  <div class="top-left">${newRecipe.name}</div>
+  <div class="top-right">Favorite</div>
+  <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
+  <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+  </div>
+  `
+  recipeContainer.append(div)
+
+
+})
+})
+
+renderOneRecipe(3)

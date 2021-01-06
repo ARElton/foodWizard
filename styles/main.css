@@ -113,3 +113,24 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+.form {
+  text-align: center;
+}
+
+textarea {
+  height: auto;
+  width: 500px;
+  outline: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.formContainer {
+  border: ridge gray;
+  font-family: cursive;
+  border-radius: 25px;
+  background-color: darkgray;
+}
