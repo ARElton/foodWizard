@@ -73,7 +73,7 @@ body {
     top: 8px;
     right: 70px;
     padding: 10px;
-    background-color: crimson;
+    background-color: linen;
     border-radius: 25px;
     border: ridge grey;
   }
@@ -104,3 +104,12 @@ body {
     color: black;
   
   }
+
+  .noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
