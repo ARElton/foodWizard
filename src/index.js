@@ -107,4 +107,33 @@ direcArray.forEach(direc => {
 
 })
 
+
+//Login feature
+
+loginForm.addEventListener("submit", handleLoginForm)
+
+let handleLoginForm = (evt) => {
+  evt.preventDefault()
+  let userName = evt.target.username.value
+
+fetch("http://localhost:3000/api/v1/login", {
+  method: "POST",
+  headers: {
+    "Accespt": "Application/json",
+    "content-type": "application/json"
+  },
+  body: JSON.stringify({
+    username: userName
+  })
+})
+.then(res => res.json())
+.then(response => {
+  if(response.id) {
+    showRecipeInformation(response)
+  } else {
+    console.error(response.error)
+  }
+  })
+}
+
 renderOneRecipe(1)

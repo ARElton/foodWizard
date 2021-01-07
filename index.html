@@ -10,6 +10,7 @@
 <body>
     <header>
        <h1 class="title">Food Wizard</h1>
+    
       </header>
       <main>
         <div class="one">
@@ -31,7 +32,19 @@
         </ul>
       </main>
       <nav class="container navContainer noSelect">
-     
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login">Login</label>
+            <input
+              name="username"
+              type="text"
+              class="form-control"
+              id="username"
+              size="60"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         <div>
           <h1>Create a New Recipe</h1>
           <form id="new-recipe-form">
