@@ -15,7 +15,7 @@
       <main>
         <div class="one">
         <img class="image" src="https://www.spendwithpennies.com/wp-content/uploads/2019/04/Spaghetti-Meat-Sauce-SpendWithPennies-4-500x500.jpg" alt="placeholder" style="max-width: 500px;" />
-        <h1 class="recipe-name">Recipe 1</h1>
+        <h1 class="recipeName">Recipe 1</h1>
         <div class="info">
           <h3>Description:</h3>
           <p class="description"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora tempore ipsam a libero aliquam est, maxime officia et quisquam sint neque iusto reprehenderit aliquid dignissimos deserunt odit atque culpa nisi!</p>
@@ -30,6 +30,25 @@
         <ul class=directions>
     
         </ul>
+      
+        <h2>Comments</h2>
+        <div id="commentList">
+
+        </div>
+        <div class="center">
+        <form id="commentForm">
+          <label>Add Comment</label>
+          <br>
+          <textarea
+            name="comment"
+            type="text"
+            ></textarea>
+            <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        <br><br>
+        </form>
+        </div>
+      
       </main>
       <nav class="container navContainer noSelect">
         <form id="login-form">
@@ -46,21 +65,25 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div>
+     
+        <div class="formContainer">
           <h1>Create a New Recipe</h1>
           <form id="new-recipe-form">
-            <div class="form-group">
+            <div class="center">
               <label for="new-recipe-name">Recipe name</label>
-              <input
-                name="recipe-name"
+              <br>
+              <textarea
+                name="recipeName"
                 type="text"
                 class="form-control"
-                id="new-recipe-name"
+                id="newRecipeName"
                 size="60"
-              />
+              ></textarea>
             </div>
-            <div class="form-group">
+            <div class="center">
               <label for="Ingredients">Ingredients</label>
-              <input
+              <br>
+              <textarea
                 name="ingredients"
                 type="text"
                 class="form-control"
@@ -68,10 +91,11 @@
                 style="height:100px"
                 size="60"
                 placeholder="Separate ingredients with a comma"
-              />
-              <div class="form-group">
-                <label for="Directions">Directions</label>
-                <input
+              ></textarea>
+              <div class="center">
+                <label for="Direction ">Directions</label>
+                <br>
+                <textarea
                   name="directions"
                   type="text"
                   class="form-control"
@@ -79,11 +103,38 @@
                   style="height:100px"
                   size="60"
                   placeholder="Separate directions with a period"
-                />
+                ></textarea>
             </div>
+            <div class="center">
+              <label for="Description">Decription</label>
+              <br>
+              <textarea
+                name="description"
+                type="text"
+                class="form-control"
+                id="description"
+                style="height:100px"
+                size="60"
+              ></textarea>
+          </div>
+          <div class="center">
+            <label for="imgUrl">Image URL</label>
+            <br>
+            <textarea
+              name="image"
+              type="text"
+              class="form-control"
+              id="image"
+              size="60"
+         
+            ></textarea>
+        </div>
+            <div class="form">
             <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </form>
         </div>
+        <br>
       </nav>
 </body>
 </html>
