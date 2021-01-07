@@ -35,7 +35,7 @@
         <div id="commentList">
 
         </div>
-        <div class="center">
+        <div class="center noSelect">
         <form id="commentForm">
           <label>Add Comment</label>
           <br>
@@ -51,6 +51,9 @@
       
       </main>
       <nav class="container navContainer noSelect">
+        <div id="user"></div>
+        <div class="dlt">
+        <div class="loginBtn">
         <form id="login-form">
           <div class="form-group">
             <label for="login">Login</label>
@@ -60,12 +63,17 @@
               class="form-control"
               id="username"
               size="60"
+              autocomplete="off"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary login-btn">Submit</button>
         </form>
+        </div>
+        </div>
+        <br>
         <div>
-     
+          <button id="createNew">Create New Recipe</button>
+          <br><br>
         <div class="formContainer">
           <h1>Create a New Recipe</h1>
           <form id="new-recipe-form">
