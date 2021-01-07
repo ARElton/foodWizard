@@ -1,3 +1,19 @@
+let createMenu = false;
+
+const btn = document.querySelector("#createNew");
+const createContainer = document.querySelector(".formContainer");
+createContainer.style.display = "none";
+
+btn.addEventListener("click", () => {
+ 
+  createMenu = !createMenu;
+  if (createMenu) {
+    createContainer.style.display = "block";
+  } else {
+    createContainer.style.display = "none";
+  }
+});
+
 
 function renderOneRecipe(id) {
 
@@ -50,19 +66,11 @@ direcArray.forEach(direc => {
    })
 
  })
-//  getComment()
 //  const commentForm = document.querySelector("#commentForm")
 //  const commentList = document.querySelector("#commentList")
  
 //  commentForm.addEventListener("submit", event => {
 //      event.preventDefault()
-//     //  console.log(event.target)
-
-//      const commentValue = {
-//       recipe_id: id,
-//       content: event.target.comment.value,
-//   }
-//   console.log(commentValue)
  
 //      const commentInput = document.createElement("div")
 
@@ -77,20 +85,16 @@ direcArray.forEach(direc => {
 //      const button = commentInput.querySelector("button")
 
 //      commentInput.addEventListener("click", event => {
-//       const commentValue = {
-//         recipe_id: id,
-//         content: event.target.comment.value,
-//     }
-//         //  if (event.target == button) {
-//         //      commentInput.innerHTML = ""
-//         //  }
-//     //  })
+//          if (event.target == button) {
+//              commentInput.innerHTML = ""
+//          }
+//      })
     
-//     //  const commentValue = {
-//     //      recipe_id: id,
-//     //      content: event.target.comment.value,
-//     //  }
-//     //  console.log(commentValue)
+//      const commentValue = {
+//          recipe_id: id,
+//          content: event.target.comment.value,
+//      }
+//      console.log(commentValue)
  
 //      fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
 //      method: "POST",
@@ -107,7 +111,6 @@ direcArray.forEach(direc => {
 //  console.log(`http://localhost:3000/api/v1/recipes/${id}`)
  
 //      document.getElementById("commentForm").reset();
-//  })
 //  })
  }
 
@@ -254,96 +257,98 @@ renderAllRecipes(recipeObj)
 })
 
 
-  const commentForm = document.querySelector("#commentForm")
-  const commentList = document.querySelector("#commentList")
-  
-  commentForm.addEventListener("submit", event => {
-      event.preventDefault()
+const commentForm = document.querySelector("#commentForm")
+const commentList = document.querySelector("#commentList")
 
-      console.log(event.target)
+commentForm.addEventListener("submit", event => {
+    event.preventDefault()
 
-      const commentValue = {
-        recipe_id: event.target.recipeId.value,
-        content: event.target.comment.value,
-    }
-    console.log(commentValue)
-    var id = event.target.recipe_id.value
+    const commentInput = document.createElement("div")
+    commentInput.innerHTML = `
+    ${event.target.comment.value}
+    <br>
+    <button>Delete</button>
+    <br><br>` 
 
-  
-      const commentInput = document.createElement("div")
- 
-      commentInput.innerHTML = `
-      ${event.target.comment.value}
-      <br>
-      <button>Delete</button>
-      <br><br>` 
-  
-      commentList.append(commentInput)
- 
-      const button = commentInput.querySelector("button")
- 
-      commentInput.addEventListener("click", event => {
-          if (event.target == button) {
-              commentInput.innerHTML = ""
-          }
-      })
-     
-      // const commentValue = {
-      //     recipe_id: event.target.recipe_id.value,
-      //     content: event.target.comment.value,
-      // }
-      // console.log(commentValue)
-      // var id = event.target.recipe_id.value
+    commentList.append(commentInput)
+    document.getElementById("commentForm").reset();
 
-      event.reset()
-  
-      fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(commentValue)
-  })
-  .then(r => r.json())
-  .then(commentObj =>
-     console.log(commentObj))
-  
-  console.log(`http://localhost:3000/api/v1/recipes/${id}`)
-  
-  })
+    // fetch("http://localhost:3000/api/v1/recipes", {
+    // method: "POST",
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   Accept: "application/json"
+    // },
+    // body: JSON.stringify(newRecipe)
+    
+    const button = commentInput.querySelector("button")
 
+    commentInput.addEventListener("click", event => {
+        if (event.target == button) {
+            commentInput.innerHTML = ""
+        }
+    })
+})
 
 
 //Login feature
-const loginForm = document.querySelector("#login-form")
+const loginForm = document.querySelector(".loginBtn")
+const loginBtn = document.querySelector(".login-btn")
+const btnDelete = document.querySelector(".dlt")
+const logoutBtn = document.querySelector(".logout")
+
+loginBtn.addEventListener("click", () => {
+  
+    btnDelete.style.display = "none";
+
+})
+
+// const logoutBtn = document.querySelector(".logout")
+
+// logoutBtn.addEventListener("click", () => {
+//     btnDelete.style.display = "block";
+// })
 
 // loginForm.addEventListener("submit", handleLoginForm)
 
 let handleLoginForm = (evt) => {
   evt.preventDefault()
-  let userName = evt.target.username.value
+  let name = evt.target.username.value
+
+  const userDiv = document.querySelector("#user")
+  const div = document.createElement('div')
+  div.innerHTML = `Welcome ${name}` 
+  
+  userDiv.append(div)
+
+
+// const logoutBtn = document.querySelector(".logout")
+
+// logoutBtn.addEventListener("click", () => {
+//     btnDelete.style.display = "block";
+// })
+  console.log(name)
 
 fetch("http://localhost:3000/api/v1/login", {
   method: "POST",
   headers: {
-    "Accespt": "Application/json",
-    "content-type": "application/json"
+    "Accept": "application/json",
+    "Content-Type": "application/json"
   },
-  body: JSON.stringify({
-    username: userName
-  })
+  body: JSON.stringify({username: name})
 })
 .then(res => res.json())
 .then(response => {
+    console.log(response)
   if(response.id) {
     showRecipeInformation(response)
   } else {
     console.error(response.error)
   }
-  })
+})
+  document.getElementById("login-form").reset()
 }
 
 loginForm.addEventListener("submit", handleLoginForm)
 
-renderOneRecipe(7)
+renderOneRecipe(3)
