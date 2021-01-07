@@ -109,8 +109,9 @@ direcArray.forEach(direc => {
 
 
 //Login feature
+const loginForm = document.querySelector("#login-form")
 
-loginForm.addEventListener("submit", handleLoginForm)
+// loginForm.addEventListener("submit", handleLoginForm)
 
 let handleLoginForm = (evt) => {
   evt.preventDefault()
@@ -135,5 +136,7 @@ fetch("http://localhost:3000/api/v1/login", {
   }
   })
 }
+
+loginForm.addEventListener("submit", handleLoginForm)
 
 renderOneRecipe(1)
