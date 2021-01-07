@@ -11,10 +11,22 @@ const ingredients = document.querySelector(".ingredients")
 const directions = document.querySelector(".directions")
 const image = document.querySelector(".image")
 
-
 recipeName.textContent = recipeData.name
 description.textContent = recipeData.description
 image.src = recipeData.imgUrl
+
+const commentList = document.querySelector("#commentList")
+commentList.innerHTML = ""
+
+recipeData.comments.forEach(com => {
+
+    const commentInput = document.createElement("div")
+    commentInput.innerHTML = `
+    ${com.content}
+    <br><br>`
+
+    commentList.append(commentInput)
+})
 
 
 const ingredArray = recipeData.ingredients.split(",")
@@ -36,16 +48,71 @@ direcArray.forEach(direc => {
     li.textContent = direc
     directions.append(li)
    })
- })
-}
 
+ })
+ const commentForm = document.querySelector("#commentForm")
+ const commentList = document.querySelector("#commentList")
+ 
+ commentForm.addEventListener("submit", event => {
+     event.preventDefault()
+ 
+     const commentInput = document.createElement("div")
+
+     commentInput.innerHTML = `
+     ${event.target.comment.value}
+     <br>
+     <button>Delete</button>
+     <br><br>` 
+ 
+     commentList.append(commentInput)
+
+     const button = commentInput.querySelector("button")
+
+     commentInput.addEventListener("click", event => {
+         if (event.target == button) {
+             commentInput.innerHTML = ""
+         }
+     })
+    
+     const commentValue = {
+         recipe_id: id,
+         content: event.target.comment.value,
+     }
+     console.log(commentValue)
+ 
+     fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+       Accept: "application/json"
+     },
+     body: JSON.stringify(commentValue)
+ })
+ .then(r => r.json())
+ .then(commentObj =>
+    console.log(commentObj))
+ 
+ console.log(`http://localhost:3000/api/v1/recipes/${id}`)
+ 
+     document.getElementById("commentForm").reset();
+ })
+ }
+
+
+fetch("http://localhost:3000/api/v1/recipes")
+.then(r => r.json())
+.then(recipeArray =>
+    recipeArray.forEach(recipeObj => 
+        renderAllRecipes(recipeObj)
+    ))
+
+function renderAllRecipes(recipeObj) {
  const recipeContainer = document.querySelector(".navContainer")
 
-//  function renderAllRecipes()
- fetch("http://localhost:3000/api/v1/recipes")
-  .then(r => r.json())
-  .then(recipeArray => {
-      recipeArray.forEach(recipeObj => {
+//  fetch("http://localhost:3000/api/v1/recipes")
+//   .then(r => r.json())
+//   .then(recipeArray => {
+//       recipeArray.forEach(recipeObj => {
 
     const div = document.createElement('div')
 
@@ -107,9 +174,9 @@ direcArray.forEach(direc => {
           let recipeId = event.target.dataset.id
           renderOneRecipe(recipeId)
       })
-    })
+    }
 
-})
+
 
 const form = document.querySelector("#new-recipe-form")
 
@@ -121,10 +188,13 @@ form.addEventListener("submit", event => {
         ingredients: event.target.ingredients.value,
         directions: event.target.directions.value,
         description: event.target.description.value,
-        imgUrl: event.target.image.value
+        img_url: event.target.image.value
     }
 
-    const div = document.createElement('div')
+   
+console.log(event.target.directions.value)
+console.log(newRecipe.imgUrl)
+    // const div = document.createElement('div')
 
     div.innerHTML = `
     <br>
@@ -137,31 +207,69 @@ form.addEventListener("submit", event => {
     `
     recipeContainer.append(div)
 
-    fetch('http://localhost:3000/api/v1/recipes', {
-  method: 'POST', 
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(newRecipe),
+
+
+fetch("http://localhost:3000/api/v1/recipes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(newRecipe)
 })
 .then(response => response.json())
-.then(newRecipe => {
-  
-  const div = document.createElement('div')
+.then(recipeObj => {
 
-  div.innerHTML = `
-  <br>
-  <div class="container">
-  <div class="top-left">${newRecipe.name}</div>
-  <div class="top-right">Favorite</div>
-  <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
-  <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
-  </div>
-  `
-  recipeContainer.append(div)
-
-
+console.log(recipeObj)
+renderAllRecipes(recipeObj)
+// const recipeContainer = document.querySelector(".navContainer")
+// const div = document.createElement('div')
+//   div.innerHTML = `
+//   <br>
+//   <div class="container">
+//   <div class="top-left">${recipeObj.name}</div>
+//   <div class="top-right">Favorite</div>
+//   <img class="showImg" data-id="${recipeObj.id}" src="src/images/21600382.jpg" alt="placeholder" style="max-width: 500px;" />
+//   <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+//   </div>
+//   `
+//   recipeContainer.append(div)
+  document.getElementById("new-recipe-form").reset();
 })
 })
+
+
+// const commentForm = document.querySelector("#commentForm")
+// const commentList = document.querySelector("#commentList")
+
+// commentForm.addEventListener("submit", event => {
+//     event.preventDefault()
+
+//     const commentInput = document.createElement("div")
+//     commentInput.innerHTML = `
+//     ${event.target.comment.value}
+//     <br>
+//     <button>Delete</button>
+//     <br><br>` 
+
+//     commentList.append(commentInput)
+//     document.getElementById("commentForm").reset();
+
+//     // fetch("http://localhost:3000/api/v1/recipes", {
+//     // method: "POST",
+//     // headers: {
+//     //   "Content-Type": "application/json",
+//     //   Accept: "application/json"
+//     // },
+//     // body: JSON.stringify(newRecipe)
+    
+//     const button = commentInput.querySelector("button")
+
+//     commentInput.addEventListener("click", event => {
+//         if (event.target == button) {
+//             commentInput.innerHTML = ""
+//         }
+//     })
+// })
 
 renderOneRecipe(1)
