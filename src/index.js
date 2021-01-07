@@ -50,52 +50,65 @@ direcArray.forEach(direc => {
    })
 
  })
- const commentForm = document.querySelector("#commentForm")
- const commentList = document.querySelector("#commentList")
+//  getComment()
+//  const commentForm = document.querySelector("#commentForm")
+//  const commentList = document.querySelector("#commentList")
  
- commentForm.addEventListener("submit", event => {
-     event.preventDefault()
+//  commentForm.addEventListener("submit", event => {
+//      event.preventDefault()
+//     //  console.log(event.target)
+
+//      const commentValue = {
+//       recipe_id: id,
+//       content: event.target.comment.value,
+//   }
+//   console.log(commentValue)
  
-     const commentInput = document.createElement("div")
+//      const commentInput = document.createElement("div")
 
-     commentInput.innerHTML = `
-     ${event.target.comment.value}
-     <br>
-     <button>Delete</button>
-     <br><br>` 
+//      commentInput.innerHTML = `
+//      ${event.target.comment.value}
+//      <br>
+//      <button>Delete</button>
+//      <br><br>` 
  
-     commentList.append(commentInput)
+//      commentList.append(commentInput)
 
-     const button = commentInput.querySelector("button")
+//      const button = commentInput.querySelector("button")
 
-     commentInput.addEventListener("click", event => {
-         if (event.target == button) {
-             commentInput.innerHTML = ""
-         }
-     })
+//      commentInput.addEventListener("click", event => {
+//       const commentValue = {
+//         recipe_id: id,
+//         content: event.target.comment.value,
+//     }
+//         //  if (event.target == button) {
+//         //      commentInput.innerHTML = ""
+//         //  }
+//     //  })
     
-     const commentValue = {
-         recipe_id: id,
-         content: event.target.comment.value,
-     }
-     console.log(commentValue)
+//     //  const commentValue = {
+//     //      recipe_id: id,
+//     //      content: event.target.comment.value,
+//     //  }
+//     //  console.log(commentValue)
  
-     fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-       Accept: "application/json"
-     },
-     body: JSON.stringify(commentValue)
- })
- .then(r => r.json())
- .then(commentObj =>
-    console.log(commentObj))
+//      fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
+//      method: "POST",
+//      headers: {
+//        "Content-Type": "application/json",
+//        Accept: "application/json"
+//      },
+//      body: JSON.stringify(commentValue)
+//  })
+//  .then(r => r.json())
+//  .then(commentObj =>
+//     console.log(commentObj))
  
- console.log(`http://localhost:3000/api/v1/recipes/${id}`)
+//  console.log(`http://localhost:3000/api/v1/recipes/${id}`)
  
-     document.getElementById("commentForm").reset();
- })
+//      document.getElementById("commentForm").reset();
+//  })
+//  })
  }
 
 
@@ -179,6 +192,8 @@ function renderAllRecipes(recipeObj) {
 
 
 const form = document.querySelector("#new-recipe-form")
+const recipeContainer = document.querySelector(".navContainer")
+
 
 form.addEventListener("submit", event => {
     event.preventDefault()
@@ -192,20 +207,20 @@ form.addEventListener("submit", event => {
     }
 
    
-console.log(event.target.directions.value)
-console.log(newRecipe.imgUrl)
+// console.log(event.target.directions.value)
+// console.log(newRecipe.imgUrl)
     // const div = document.createElement('div')
 
-    div.innerHTML = `
-    <br>
-    <div class="container">
-    <div class="top-left">${newRecipe.name}</div>
-    <div class="top-right">Favorite</div>
-    <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
-    <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
-    </div>
-    `
-    recipeContainer.append(div)
+    // div.innerHTML = `
+    // <br>
+    // <div class="container">
+    // <div class="top-left">${newRecipe.name}</div>
+    // <div class="top-right">Favorite</div>
+    // <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
+    // <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+    // </div>
+    // `
+    // recipeContainer.append(div)
 
 
 
@@ -239,38 +254,65 @@ renderAllRecipes(recipeObj)
 })
 
 
-// const commentForm = document.querySelector("#commentForm")
-// const commentList = document.querySelector("#commentList")
+  const commentForm = document.querySelector("#commentForm")
+  const commentList = document.querySelector("#commentList")
+  
+  commentForm.addEventListener("submit", event => {
+      event.preventDefault()
 
-// commentForm.addEventListener("submit", event => {
-//     event.preventDefault()
+      console.log(event.target)
 
-//     const commentInput = document.createElement("div")
-//     commentInput.innerHTML = `
-//     ${event.target.comment.value}
-//     <br>
-//     <button>Delete</button>
-//     <br><br>` 
+      const commentValue = {
+        recipe_id: event.target.recipeId.value,
+        content: event.target.comment.value,
+    }
+    console.log(commentValue)
+    var id = event.target.recipe_id.value
 
-//     commentList.append(commentInput)
-//     document.getElementById("commentForm").reset();
+  
+      const commentInput = document.createElement("div")
+ 
+      commentInput.innerHTML = `
+      ${event.target.comment.value}
+      <br>
+      <button>Delete</button>
+      <br><br>` 
+  
+      commentList.append(commentInput)
+ 
+      const button = commentInput.querySelector("button")
+ 
+      commentInput.addEventListener("click", event => {
+          if (event.target == button) {
+              commentInput.innerHTML = ""
+          }
+      })
+     
+      // const commentValue = {
+      //     recipe_id: event.target.recipe_id.value,
+      //     content: event.target.comment.value,
+      // }
+      // console.log(commentValue)
+      // var id = event.target.recipe_id.value
 
-//     // fetch("http://localhost:3000/api/v1/recipes", {
-//     // method: "POST",
-//     // headers: {
-//     //   "Content-Type": "application/json",
-//     //   Accept: "application/json"
-//     // },
-//     // body: JSON.stringify(newRecipe)
-    
-//     const button = commentInput.querySelector("button")
+      event.reset()
+  
+      fetch(`http://localhost:3000/api/v1/recipes/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(commentValue)
+  })
+  .then(r => r.json())
+  .then(commentObj =>
+     console.log(commentObj))
+  
+  console.log(`http://localhost:3000/api/v1/recipes/${id}`)
+  
+  })
 
-//     commentInput.addEventListener("click", event => {
-//         if (event.target == button) {
-//             commentInput.innerHTML = ""
-//         }
-//     })
-// })
 
 
 //Login feature
@@ -304,4 +346,4 @@ fetch("http://localhost:3000/api/v1/login", {
 
 loginForm.addEventListener("submit", handleLoginForm)
 
-renderOneRecipe(1)
+renderOneRecipe(7)
