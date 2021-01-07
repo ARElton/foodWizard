@@ -41,6 +41,7 @@ direcArray.forEach(direc => {
 
  const recipeContainer = document.querySelector(".navContainer")
 
+//  function renderAllRecipes()
  fetch("http://localhost:3000/api/v1/recipes")
   .then(r => r.json())
   .then(recipeArray => {
@@ -123,18 +124,18 @@ form.addEventListener("submit", event => {
         imgUrl: event.target.image.value
     }
 
-    // const div = document.createElement('div')
+    const div = document.createElement('div')
 
-    // div.innerHTML = `
-    // <br>
-    // <div class="container">
-    // <div class="top-left">${newRecipe.name}</div>
-    // <div class="top-right">Favorite</div>
-    // <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
-    // <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
-    // </div>
-    // `
-    // recipeContainer.append(div)
+    div.innerHTML = `
+    <br>
+    <div class="container">
+    <div class="top-left">${newRecipe.name}</div>
+    <div class="top-right">Favorite</div>
+    <img class="showImg" data-id="${newRecipe.id}" src="${newRecipe.imgUrl}" alt="placeholder" style="max-width: 500px;" />
+    <div class="bottom-left">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+    </div>
+    `
+    recipeContainer.append(div)
 
     fetch('http://localhost:3000/api/v1/recipes', {
   method: 'POST', 
@@ -144,9 +145,8 @@ form.addEventListener("submit", event => {
   body: JSON.stringify(newRecipe),
 })
 .then(response => response.json())
-.then(data => {
-  recipes.push(newRecipe);
-
+.then(newRecipe => {
+  
   const div = document.createElement('div')
 
   div.innerHTML = `
@@ -164,4 +164,4 @@ form.addEventListener("submit", event => {
 })
 })
 
-renderOneRecipe(3)
+renderOneRecipe(1)
