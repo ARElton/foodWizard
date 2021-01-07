@@ -134,3 +134,29 @@ textarea {
   border-radius: 25px;
   background-color: darkgray;
 }
+
+#createNew {
+  border: ridge gray;
+  font-family: cursive;
+  border-radius: 25px;
+  background-color: darkgray;
+  font-size: 20px;
+  outline: none;
+}
+
+.loginBtn {
+  border: ridge gray;
+  font-family: cursive;
+  border-radius: 25px;
+  background-color: darkgray;
+  padding: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#user {
+  text-align: center;
+  font-size: 30px;
+}
